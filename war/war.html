@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>War</title>
+    </head>
+    <body>
+        <div>
+            <button onclick="game.play()">Play</button>
+        </div>
+        <div>
+            <button onclick="reset()">Reset</button>
+        </div>
+        <div id="card1"></div>
+        <div id="card2"></div>
+        <div id="deck1"></div>
+        <div id="deck2"></div>
+        <script src="deck.js"></script>
+        <script src="war.js"></script>
+        <script>
+        let game = new War();
+
+        const reset = () => {
+            game = new War();
+        };
+        </script>
+    </body>
+</html>

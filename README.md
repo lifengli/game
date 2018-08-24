@@ -1,4 +1,4 @@
-# Card game: War
+# Card Game: War
 
 sample card game with a basic UI
 
