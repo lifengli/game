@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+.npmignore 
+build
+coverage
+lib
+node_modules
+npm-debug.log
+test/report.xml
