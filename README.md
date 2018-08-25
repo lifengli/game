@@ -26,5 +26,7 @@ sample card game with a basic UI
 > ### HOW TO KEEP SCORE
 >
 > The game ends when one player has won all the cards.
-
+>
+> Number 1 represents Ace, which is the largest card.
+>
 > Basically, the cards that each player puts down go into the pot, and whoever wins the hand takes the pot. A player wins the game when they have all of the other player's cards.
