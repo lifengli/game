@@ -28,13 +28,12 @@ class War {
 
     //if one deck is empty, we have a winner
     checker() {
-
         //assume we have a winner
         this.finish = true;
 
         //worst case: every hand is equal, both decks exhausted, there is no winner
         if(!this.deck1.length && !this.deck2.length) {
-            this.winner = null;
+            this.winner = 'no winner';
         }
         //if deck1 empty, winner is player2
         else if(!this.deck1.length) {
@@ -95,7 +94,7 @@ class War {
     }
 
     compare(card1, card2) {
-
+        //get card face values
         let value1 = this.getValue(card1);
         let value2 = this.getValue(card2);
 

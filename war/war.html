@@ -41,6 +41,7 @@
         <script src="war.js"></script>
         <script>
         let game = new War();
+        let wartime = true;
 
         const hide = () => {
             let play_button = document.getElementById('playbutton');
@@ -68,14 +69,16 @@
                 document.getElementById('resetbutton').disabled = true;
 
                 setTimeout( () => {
-                        update();
+                        update(wartime=true);
                     },
-                    game.timeout
+                    game.timeout + 50
                 );
             }
         };
 
-        const update = () => {
+        const update = (wartime) => {
+            let winner = game.winner ? game.winner : '';
+
             if(game.iswar) {
                 document.getElementById('card1').innerHTML = game.warcard1;
                 document.getElementById('card2').innerHTML = game.warcard2;
@@ -85,7 +88,26 @@
 
                 document.getElementById('display').innerHTML = 'WAR !!!';
 
+                //handle the worst case: all out war, no winner
+                if(!game.deck1.length || !game.deck2.length){
+                    wartime = false;
+                    document.getElementById('card1').innerHTML = '';
+                    document.getElementById('card2').innerHTML = '';
+                    document.getElementById('display').innerHTML = 'All War: ' + winner;
+                    document.getElementById('resetbutton').disabled = false;
+                }
+
+                if(wartime === true) {
+                    setTimeout( () => {
+                            update(wartime);
+                        },
+                        game.timeout + 50
+                    );
+		}
+
             } else {
+                wartime = false;
+
                 let card1 = game.card1 ? game.card1 : '';
                 let card2 = game.card2 ? game.card2 : '';
 
@@ -95,12 +117,12 @@
                 document.getElementById('deck1').innerHTML = game.deck1.length + ' cards';
                 document.getElementById('deck2').innerHTML = game.deck2.length + ' cards';
 
-                let winner = game.winner ? game.winner : '';
                 document.getElementById('display').innerHTML = 'Winner: ' + winner;
+
+                document.getElementById('playbutton').disabled = false;
+                document.getElementById('resetbutton').disabled = false;
             }
 
-            document.getElementById('playbutton').disabled = false;
-            document.getElementById('resetbutton').disabled = false;
 
             if(game.finish) {
                 hide();
