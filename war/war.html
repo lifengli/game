@@ -8,10 +8,10 @@
             <div class="control">
                 <div class="group">
                     <div class="list">
-                        <button id="playbutton" onclick="play()">Play</button>
+                        <button id="playbutton" class="button play" onclick="play()">Play</button>
                     </div>
                     <div class="list">
-                        <button id="resetbutton" onclick="reset()">Reset</button>
+                        <button id="resetbutton" class="button reset" onclick="reset()">Reset</button>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <div class="name">Player 1</div>
                     <div class="area">
                         <div id="card1" class="card list"></div>
-                        <div id="deck1" class="deck"></div>
+                        <div id="deck1" class="deck">26 cards</div>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                 <div class="player">
                     <div class="area">
                         <div id="card2" class="card list"></div>
-                        <div id="deck2" class="deck"></div>
+                        <div id="deck2" class="deck">26 cards</div>
                     </div>
                     <div class="name">Player 2</div>
                 </div>
@@ -42,13 +42,13 @@
         <script>
         let game = new War();
 
-        let play_button = document.getElementById('playbutton');
-
         const hide = () => {
+            let play_button = document.getElementById('playbutton');
             play_button.parentNode.classList.add('hide');
         };
 
         const show = () => {
+            let play_button = document.getElementById('playbutton');
             play_button.parentNode.classList.remove('hide');
         };
 
@@ -70,7 +70,7 @@
                 setTimeout( () => {
                         update();
                     },
-                    game.timeout + 100
+                    game.timeout
                 );
             }
         };
@@ -92,8 +92,8 @@
                 document.getElementById('card1').innerHTML = card1;
                 document.getElementById('card2').innerHTML = card2;
 
-                document.getElementById('deck1').innerHTML = game.deck1.length;
-                document.getElementById('deck2').innerHTML = game.deck2.length;
+                document.getElementById('deck1').innerHTML = game.deck1.length + ' cards';
+                document.getElementById('deck2').innerHTML = game.deck2.length + ' cards';
 
                 let winner = game.winner ? game.winner : '';
                 document.getElementById('display').innerHTML = 'Winner: ' + winner;

@@ -3,6 +3,7 @@ class War {
         //get new deck of cards and split between 2 players
         this.newdeck = new Deck();
         this.newdeck.getCards();
+        //we only slice this one time, so won't be a performance issue
         this.deck1 = this.newdeck.deck.slice(0, 26);
         this.deck2 = this.newdeck.deck.slice(26);
         //current hand
@@ -98,6 +99,8 @@ class War {
         let value1 = this.getValue(card1);
         let value2 = this.getValue(card2);
 
+        //this may run into a loop with gotowar
+        //until one of the decks exhausted
         if(value1 === value2) {
             this.gotowar(card1, card2);
 
@@ -116,6 +119,7 @@ class War {
     }
 
     play() {
+        //frequent shift() could be a performance issue, but not much difference for an array this small
         this.card1 = this.deck1.shift();
         this.card2 = this.deck2.shift();
         //if both decks have cards, continue the game
