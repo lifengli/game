@@ -1,25 +1,110 @@
 <html>
     <head>
         <title>War</title>
+        <link href="war.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <div>
-            <button onclick="game.play()">Play</button>
+        <div class="warzone">
+            <div class="control">
+                <div class="group">
+                    <div class="list">
+                        <button id="playbutton" onclick="play()">Play</button>
+                    </div>
+                    <div class="list">
+                        <button id="resetbutton" onclick="reset()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table">
+                <div class="player">
+                    <div class="name">Player 1</div>
+                    <div class="area">
+                        <div id="card1" class="card list"></div>
+                        <div id="deck1" class="deck"></div>
+                    </div>
+                </div>
+
+                <div class="display" id="display">&nbsp;</div>
+
+                <div class="player">
+                    <div class="area">
+                        <div id="card2" class="card list"></div>
+                        <div id="deck2" class="deck"></div>
+                    </div>
+                    <div class="name">Player 2</div>
+                </div>
+            </div>
         </div>
-        <div>
-            <button onclick="reset()">Reset</button>
-        </div>
-        <div id="card1"></div>
-        <div id="card2"></div>
-        <div id="deck1"></div>
-        <div id="deck2"></div>
+
         <script src="deck.js"></script>
         <script src="war.js"></script>
         <script>
         let game = new War();
 
+        let play_button = document.getElementById('playbutton');
+
+        const hide = () => {
+            play_button.parentNode.classList.add('hide');
+        };
+
+        const show = () => {
+            play_button.parentNode.classList.remove('hide');
+        };
+
         const reset = () => {
             game = new War();
+            update();
+            show();
+            document.getElementById('display').innerHTML = '';
+        };
+
+        const play = () => {
+            game.play();
+            update();
+
+            if(game.iswar) {
+                document.getElementById('playbutton').disabled = true;
+                document.getElementById('resetbutton').disabled = true;
+
+                setTimeout( () => {
+                        update();
+                    },
+                    game.timeout + 100
+                );
+            }
+        };
+
+        const update = () => {
+            if(game.iswar) {
+                document.getElementById('card1').innerHTML = game.warcard1;
+                document.getElementById('card2').innerHTML = game.warcard2;
+
+                document.getElementById('deck1').innerHTML = '';
+                document.getElementById('deck2').innerHTML = '';
+
+                document.getElementById('display').innerHTML = 'WAR !!!';
+
+            } else {
+                let card1 = game.card1 ? game.card1 : '';
+                let card2 = game.card2 ? game.card2 : '';
+
+                document.getElementById('card1').innerHTML = card1;
+                document.getElementById('card2').innerHTML = card2;
+
+                document.getElementById('deck1').innerHTML = game.deck1.length;
+                document.getElementById('deck2').innerHTML = game.deck2.length;
+
+                let winner = game.winner ? game.winner : '';
+                document.getElementById('display').innerHTML = 'Winner: ' + winner;
+            }
+
+            document.getElementById('playbutton').disabled = false;
+            document.getElementById('resetbutton').disabled = false;
+
+            if(game.finish) {
+                hide();
+            }
         };
         </script>
     </body>

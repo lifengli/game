@@ -1,0 +1,80 @@
+.list {
+    padding: 20px;
+}
+.hide {
+    visibility: hidden;
+}
+.warzone {
+    padding: 20px 0 0 0;
+    margin: 0;
+}
+.warzone > div{
+    padding: 0;
+    vertical-align: top;
+    display: inline-block;
+}
+.control {
+    padding: 0;
+    width: 25%;
+    height: 804px;
+}
+.group {
+    text-align: right;
+    padding: 350px 50px 10px 10px;
+}
+.table {
+    padding: 0;
+}
+.player {
+    width: 500px;
+    height: 300px;
+    border: 1px #e1e1e1 solid;
+    border-radius: 0;
+}
+.player > div{
+    text-align: center;
+}
+.name {
+    font-weight: bold;
+    font-size: 24px;
+    height: 30px;
+    color: #AB504D;
+}
+.area {
+    width: 100%;
+    height: 270px;
+}
+.area > div {
+    display: inline-block;
+}
+.card {
+    height: 120px;
+    width: 120px;
+    margin-top: 15px;
+    padding-top: 90px;
+    font-size: 24px;
+    color: white;
+    background-color: #4EA9AC;;
+    border: 1px red solid;
+    border-radius: 5px;
+}
+.deck {
+    height: 100px;
+    width: 240px;
+    font-weight: bold;
+    font-size: 70px;
+    color: #4EA9AC;
+    margin-bottom: 70px;
+    vertical-align: bottom;
+}
+.display {
+    width: 502px;
+    height: 120px;
+    font-weight: bold;
+    font-size: 28px;
+    color: #AB504D;
+    padding-top: 80px;
+    text-align: center;
+    line-height: 20px;
+    background-color: #e1e1e1;;
+}
